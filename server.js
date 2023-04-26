@@ -33,18 +33,35 @@ app.get('/', (request, response) => {
 
 app.get('/weather', (request, response) => {
   //http://localhost:3002/weather?lat=47.60621&lon=-122.33207&searchQuery=Seattle
-  console.log('req object', request.query.searchQuery);
-  let lat = request.query.lat;
-  let lon = request.query.lon;
-  console.log(lat, lon);
+//   console.log('req object', request.query.searchQuery);
+//   let lat = request.query.lat;
+//   let lon = request.query.lon;
+//   console.log(lat, lon);
 
   response.send(`Lattitute: ${lat} Longtitute: ${lon}`);
+    try{
+        let searchQuery = request.query.searchQuery;
+
+        let dataToConstructor = weatherData.find(weather => weather.city_name.toLowerCase() === .searchQuery.toLowerCase());
+        console.log('HHH', dataToConstructor.data);
+
+        let dataSending = dataToConstructor.map(dayForecase => new dayForecast(dayForecast));
+
+        response.send(dataSending);
+    } catch(error) {
+
+    }
 });
 
+class Forecast {
+    constructor(weatherObjects){
+        console.log('SSS', weatherObjects);
+        this.date = weatherObjects.data.valid_date;
+        this.descripttion = weatherObjects.data.weather.descripttion;
+    }
+}
+
 // Add route to handle the front end request.
-
-
-
 
 // Add class to process the data before we send it back to the front.
 // Class and Constructor.
