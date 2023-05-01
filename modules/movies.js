@@ -35,7 +35,7 @@ class MovieSummary {
         this.overview = movie.overview;
         this.averageVotes = movie.vote_average;
         this.totalVotes = movie.vote_count;
-        this.imageUrl = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
+        this.imageUrl = movie.poster_path;
         this.popularity = movie.popularity;
         this.releasedOn = movie.release_date;
         this.timestamp = Date.now();
